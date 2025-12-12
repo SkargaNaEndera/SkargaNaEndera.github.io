@@ -1,10 +1,210 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>Dokument</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Skarga Na Endera</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg1: #2b0f3a;
+      --bg2: #5b2a86;
+      --accent: #9b59ff;
+      --card-bg: rgba(255,255,255,0.06);
+      --glass: rgba(255,255,255,0.04);
+      --muted: rgba(255,255,255,0.8);
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: white;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      background: radial-gradient(1200px 600px at 10% 20%, rgba(155,89,255,0.18), transparent),
+                  linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 60%);
+    }
+
+    .container{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:28px;
+      padding:36px 20px;
+      position:relative;
+    }
+
+    .card{
+      width:min(1100px, 96%);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.04));
+      border-radius:18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+      padding:48px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:18px;
+      border: 1px solid rgba(255,255,255,0.06);
+      backdrop-filter: blur(6px) saturate(120%);
+    }
+
+    .title{
+      font-size: clamp(32px, 6.5vw, 72px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      text-align:center;
+      line-height:1;
+      margin:0;
+      padding:8px 14px;
+      background: linear-gradient(90deg, #ffffff, rgba(255,255,255,0.6));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 6px 30px rgba(91,42,134,0.25);
+    }
+
+    .subtitle{
+      font-weight:600;
+      color: var(--muted);
+      text-align:center;
+      max-width:900px;
+      margin:0;
+      font-size: clamp(14px, 2.2vw, 18px);
+    }
+
+    .illustration{
+      width:120px;
+      height:120px;
+      border-radius:16px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      font-size:46px;
+      color: rgba(255,255,255,0.95);
+      box-shadow: 0 8px 20px rgba(91,42,134,0.2);
+    }
+
+    .complaint{
+      width:100%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+      border-radius:12px;
+      padding:20px;
+      margin-top:8px;
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .complaint .left {
+      min-width:56px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+    }
+
+    .badge{
+      background: linear-gradient(135deg, rgba(155,89,255,0.18), rgba(155,89,255,0.06));
+      border-radius:10px;
+      padding:10px 12px;
+      font-weight:700;
+      color:var(--accent);
+      font-size:14px;
+      border:1px solid rgba(155,89,255,0.12);
+    }
+
+    .complaint .right {
+      flex:1;
+      color: #efeef7;
+      font-size:15px;
+      line-height:1.5;
+    }
+
+    .complaint ul{
+      margin:6px 0 0 18px;
+      padding:0;
+    }
+
+    .complaint li{
+      margin:8px 0;
+      list-style: none;
+      position:relative;
+      padding-left:28px;
+    }
+
+    .complaint li::before{
+      content: "•";
+      position:absolute;
+      left:0;
+      top:0;
+      font-weight:800;
+      color: var(--accent);
+      font-size:22px;
+      line-height:1;
+    }
+
+    .muted-note{
+      margin-top:10px;
+      font-size:13px;
+      color: rgba(255,255,255,0.65);
+    }
+
+    footer{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-top:18px;
+      padding:18px 6px 40px;
+      font-size:14px;
+      color: rgba(255,255,255,0.75);
+    }
+
+    /* responsive tweaks */
+    @media (max-width:720px){
+      .complaint{flex-direction:column;align-items:stretch}
+      .complaint .left{min-width:auto;display:flex;justify-content:flex-start}
+    }
+
+  </style>
 </head>
 <body>
-  <h1>gówno</h1>
-</body>
-</html>
+  <div class="container">
+    <div class="card" role="main" aria-labelledby="main-title">
+      <div class="illustration" aria-hidden="true">✉️</div>
+
+      <h1 id="main-title" class="title">Skarga Na Endera</h1>
+
+      <p class="subtitle">
+        Niniejsza strona zawiera zgłoszenie dotyczące zachowania wskazanego użytkownika — poniżej wypunktowano obserwacje i uwagi.
+      </p>
+
+      <div class="complaint" role="article" aria-label="Treść skargi">
+        <div class="left">
+          <div class="badge">Zgłoszenie</div>
+        </div>
+
+        <div class="right">
+          <p>
+            Poniżej znajdują się sformułowane uwagi — są to zgłoszone obserwacje, a nie wyroki. Prosimy o weryfikację przez odpowiednie osoby.
+          </p>
+
+          <ul>
+            <li>Nie przestrzega regulaminu, który sam stworzył.</li>
+            <li>Wyzywanie innych użytkowników będąc administratorem / mając uprawnienia.</li>
+            <li>Regularne granie na gamemode <strong>Creative</strong> na serwerze mimo zasad (zgłoszone jako nadużycie).</li>
+            <li>Niewłaściwe użycie uprawnień administracyjnych i faworyzowanie graczy.</li>
+            <li>Inne zachowania wskazujące na brak profesjonalizmu w roli administratora.</li>
+          </ul>
+
+          <p class="muted-note">
+            Jeśli chcesz, mogę dostosować tekst (zmi
