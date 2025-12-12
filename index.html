@@ -10,11 +10,11 @@
 
   <style>
     :root{
-      --bg1: #2b0f3a;
-      --bg2: #5b2a86;
-      --accent: #9b59ff;
+      --bg1: #3b0f58;
+      --bg2: #672c9a;
+      --bg3: #8c44c9;
+      --accent: #d9a6ff;
       --card-bg: rgba(255,255,255,0.06);
-      --glass: rgba(255,255,255,0.04);
       --muted: rgba(255,255,255,0.8);
     }
 
@@ -22,12 +22,14 @@
     html,body{
       height:100%;
       margin:0;
-      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      font-family: 'Poppins', system-ui;
       color: white;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      background: radial-gradient(1200px 600px at 10% 20%, rgba(155,89,255,0.18), transparent),
-                  linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 60%);
+      background: linear-gradient(
+        145deg,
+        var(--bg1) 0%,
+        var(--bg2) 35%,
+        var(--bg3) 100%
+      ); /* ŁAGODNY przejściowy gradient */
     }
 
     .container{
@@ -36,174 +38,103 @@
       flex-direction:column;
       align-items:center;
       justify-content:center;
-      gap:28px;
       padding:36px 20px;
-      position:relative;
     }
 
     .card{
       width:min(1100px, 96%);
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.04));
-      border-radius:18px;
+      background: rgba(255,255,255,0.05);
+      border-radius:20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.45);
       padding:48px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:18px;
-      border: 1px solid rgba(255,255,255,0.06);
-      backdrop-filter: blur(6px) saturate(120%);
+      border:1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(6px);
     }
 
     .title{
-      font-size: clamp(32px, 6.5vw, 72px);
+      font-size: clamp(36px, 7vw, 78px);
       font-weight: 800;
-      letter-spacing: -1px;
       text-align:center;
-      line-height:1;
-      margin:0;
-      padding:8px 14px;
-      background: linear-gradient(90deg, #ffffff, rgba(255,255,255,0.6));
+      margin-bottom:20px;
+      background: linear-gradient(90deg, #ffffff, #e5d4ff);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: 0 6px 30px rgba(91,42,134,0.25);
-    }
-
-    .subtitle{
-      font-weight:600;
-      color: var(--muted);
-      text-align:center;
-      max-width:900px;
-      margin:0;
-      font-size: clamp(14px, 2.2vw, 18px);
     }
 
     .illustration{
       width:120px;
       height:120px;
-      border-radius:16px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border-radius:20px;
+      background: rgba(255,255,255,0.07);
       display:flex;
       align-items:center;
       justify-content:center;
-      font-weight:800;
-      font-size:46px;
-      color: rgba(255,255,255,0.95);
-      box-shadow: 0 8px 20px rgba(91,42,134,0.2);
+      font-size:48px;
+      margin:0 auto 20px auto;
     }
 
     .complaint{
-      width:100%;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+      background: rgba(255,255,255,0.04);
       border-radius:12px;
-      padding:20px;
-      margin-top:8px;
-      display:flex;
-      gap:16px;
-      align-items:flex-start;
-      border: 1px solid rgba(255,255,255,0.03);
-    }
-
-    .complaint .left {
-      min-width:56px;
-      display:flex;
-      align-items:flex-start;
-      justify-content:center;
-    }
-
-    .badge{
-      background: linear-gradient(135deg, rgba(155,89,255,0.18), rgba(155,89,255,0.06));
-      border-radius:10px;
-      padding:10px 12px;
-      font-weight:700;
-      color:var(--accent);
-      font-size:14px;
-      border:1px solid rgba(155,89,255,0.12);
-    }
-
-    .complaint .right {
-      flex:1;
-      color: #efeef7;
-      font-size:15px;
-      line-height:1.5;
+      padding:24px;
+      border:1px solid rgba(255,255,255,0.08);
     }
 
     .complaint ul{
-      margin:6px 0 0 18px;
-      padding:0;
+      margin:0;
+      padding-left:20px;
     }
 
     .complaint li{
-      margin:8px 0;
-      list-style: none;
-      position:relative;
-      padding-left:28px;
-    }
-
-    .complaint li::before{
-      content: "•";
-      position:absolute;
-      left:0;
-      top:0;
-      font-weight:800;
-      color: var(--accent);
-      font-size:22px;
-      line-height:1;
-    }
-
-    .muted-note{
-      margin-top:10px;
-      font-size:13px;
-      color: rgba(255,255,255,0.65);
+      margin:12px 0;
+      line-height:1.5;
+      font-size:16px;
     }
 
     footer{
-      width:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin-top:18px;
-      padding:18px 6px 40px;
+      margin-top:20px;
+      text-align:center;
+      color:rgba(255,255,255,0.7);
       font-size:14px;
-      color: rgba(255,255,255,0.75);
     }
-
-    /* responsive tweaks */
-    @media (max-width:720px){
-      .complaint{flex-direction:column;align-items:stretch}
-      .complaint .left{min-width:auto;display:flex;justify-content:flex-start}
-    }
-
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="card" role="main" aria-labelledby="main-title">
-      <div class="illustration" aria-hidden="true">✉️</div>
+    <div class="card">
+      <div class="illustration">📢</div>
 
-      <h1 id="main-title" class="title">Skarga Na Endera</h1>
+      <h1 class="title">Skarga Na Endera</h1>
 
-      <p class="subtitle">
-        Niniejsza strona zawiera zgłoszenie dotyczące zachowania wskazanego użytkownika — poniżej wypunktowano obserwacje i uwagi.
-      </p>
+      <div class="complaint">
+        <ul>
+          <li>Nie przestrzega regulaminu, który sam stworzył.</li>
+          <li>Wyzywa innych graczy, będąc administratorem.</li>
+          <li>Gra na gamemode <strong>Creative</strong>, mimo że nie powinien.</li>
+          <li>Nadużywa komend administracyjnych w nieuzasadnionych sytuacjach.</li>
+          <li>Ignoruje zgłoszenia innych użytkowników.</li>
+          <li>Wprowadza chaos na serwerze zamiast go porządkować.</li>
+          <li>Faworyzuje wybranych graczy.</li>
+          <li>Zmienia zasady pod siebie, kiedy mu coś nie pasuje.</li>
+          <li>Często wywołuje konflikty zamiast je rozwiązywać.</li>
+          <li>Nie reaguje na prośby o pomoc od nowych graczy.</li>
+          <li>Wykorzystuje uprawnienia, by zdobywać przedmioty w grze.</li>
+          <li>Utrudnia innym grę zamiast ich wspierać.</li>
+          <li>Nie potrafi przyjąć krytyki od użytkowników.</li>
+          <li>Przeprowadza zmiany na serwerze bez informowania innych.</li>
+          <li>Potrafi usuwać lub niszczyć budowle graczy bez powodu.</li>
+          <li>Wprowadza zamieszanie w ekonomii serwera przez cheatowane przedmioty.</li>
+          <li>Manipuluje sytuacją, aby wyglądało, że to inni są winni.</li>
+          <li>Podważa ustalenia, które sam wcześniej zaakceptował.</li>
+          <li>Przekracza swoje kompetencje bez konsultacji z innymi adminami.</li>
+        </ul>
+      </div>
 
-      <div class="complaint" role="article" aria-label="Treść skargi">
-        <div class="left">
-          <div class="badge">Zgłoszenie</div>
-        </div>
-
-        <div class="right">
-          <p>
-            Poniżej znajdują się sformułowane uwagi — są to zgłoszone obserwacje, a nie wyroki. Prosimy o weryfikację przez odpowiednie osoby.
-          </p>
-
-          <ul>
-            <li>Nie przestrzega regulaminu, który sam stworzył.</li>
-            <li>Wyzywanie innych użytkowników będąc administratorem / mając uprawnienia.</li>
-            <li>Regularne granie na gamemode <strong>Creative</strong> na serwerze mimo zasad (zgłoszone jako nadużycie).</li>
-            <li>Niewłaściwe użycie uprawnień administracyjnych i faworyzowanie graczy.</li>
-            <li>Inne zachowania wskazujące na brak profesjonalizmu w roli administratora.</li>
-          </ul>
-
-      
+      <footer>
+        &copy; 2025 — Strona Skargi
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
