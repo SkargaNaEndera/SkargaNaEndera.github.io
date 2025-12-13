@@ -1,32 +1,35 @@
 <!doctype html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Skarga Na Endera</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800&display=swap" rel="stylesheet">
+  <!-- Czcionka -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg-dark: #1e1029;
-      --bg-mid: #3a1c52;
-      --bg-light: #5b2d82;
-      --accent: #caa8ff;
-      --text-muted: rgba(255,255,255,0.78);
+      --bg1:#1c0f2a;
+      --bg2:#3a1c52;
+      --bg3:#5b2d82;
+      --card:rgba(255,255,255,0.06);
+      --border:rgba(255,255,255,0.12);
+      --text-muted:rgba(255,255,255,0.75);
+      --accent:#caa8ff;
     }
 
     *{box-sizing:border-box}
 
     body{
       margin:0;
-      min-height:100vh;
-      font-family: 'Inter', system-ui;
+      font-family:'Inter',system-ui;
       color:white;
+      min-height:100vh;
       background:
-        radial-gradient(900px 500px at 15% 20%, rgba(202,168,255,0.18), transparent),
-        radial-gradient(700px 400px at 85% 80%, rgba(130,90,200,0.18), transparent),
-        linear-gradient(160deg, var(--bg-dark), var(--bg-mid), var(--bg-light));
+        radial-gradient(800px 400px at 15% 20%, rgba(202,168,255,0.18), transparent),
+        radial-gradient(600px 300px at 85% 80%, rgba(120,80,200,0.18), transparent),
+        linear-gradient(160deg,var(--bg1),var(--bg2),var(--bg3));
     }
 
     .wrapper{
@@ -38,20 +41,25 @@
     }
 
     .card{
-      width:min(1100px, 100%);
-      background: rgba(255,255,255,0.05);
+      width:100%;
+      max-width:1100px;
+      background:var(--card);
+      border:1px solid var(--border);
       border-radius:22px;
       overflow:hidden;
-      border:1px solid rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      backdrop-filter:blur(10px);
+      box-shadow:0 20px 50px rgba(0,0,0,0.5);
     }
 
     /* ===== BANNER ===== */
     .banner{
       height:220px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
       background:
-        linear-gradient(120deg, rgba(202,168,255,0.35), rgba(90,40,140,0.6)),
+        linear-gradient(120deg, rgba(202,168,255,0.35), rgba(90,40,140,0.65)),
         url("data:image/svg+xml;utf8,
         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 400'>
           <defs>
@@ -62,24 +70,18 @@
           </defs>
           <rect width='1200' height='400' fill='url(%23g)'/>
           <circle cx='300' cy='200' r='180' fill='rgba(255,255,255,0.08)'/>
-          <circle cx='800' cy='100' r='120' fill='rgba(255,255,255,0.06)'/>
-          <circle cx='950' cy='300' r='160' fill='rgba(255,255,255,0.05)'/>
+          <circle cx='850' cy='120' r='130' fill='rgba(255,255,255,0.06)'/>
         </svg>");
-      background-size: cover;
-      background-position: center;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:20px;
+      background-size:cover;
+      background-position:center;
     }
 
     .banner h1{
-      font-size: clamp(36px, 6vw, 64px);
-      font-weight:800;
       margin:0;
+      font-size:clamp(34px,6vw,64px);
+      font-weight:800;
       letter-spacing:-1px;
-      text-shadow: 0 6px 30px rgba(0,0,0,0.6);
+      text-shadow:0 6px 30px rgba(0,0,0,0.6);
     }
 
     .content{
@@ -88,7 +90,7 @@
 
     .subtitle{
       text-align:center;
-      margin-top:-20px;
+      margin-top:-10px;
       margin-bottom:30px;
       font-size:16px;
       color:var(--text-muted);
@@ -96,30 +98,29 @@
 
     section{
       position:relative;
-      background: rgba(255,255,255,0.04);
+      background:rgba(255,255,255,0.04);
+      border:1px solid var(--border);
       border-radius:14px;
       padding:28px;
-      border:1px solid rgba(255,255,255,0.08);
       overflow:hidden;
     }
 
-    /* dekoracyjna grafika w sekcji */
     section::after{
       content:"";
       position:absolute;
-      right:-60px;
       top:-60px;
+      right:-60px;
       width:200px;
       height:200px;
-      background: radial-gradient(circle, rgba(202,168,255,0.25), transparent 70%);
+      background:radial-gradient(circle, rgba(202,168,255,0.25), transparent 70%);
       pointer-events:none;
     }
 
-    section h2{
+    h2{
       margin-top:0;
+      margin-bottom:16px;
       font-size:22px;
       font-weight:700;
-      margin-bottom:14px;
       color:var(--accent);
     }
 
@@ -141,9 +142,32 @@
       color:rgba(255,255,255,0.65);
     }
 
-    @media (max-width:700px){
-      .content{padding:30px}
-      .banner{height:180px}
+    /* ===== MOBILE ===== */
+    @media (max-width:600px){
+      .banner{
+        height:140px;
+      }
+
+      .banner h1{
+        font-size:32px;
+      }
+
+      .content{
+        padding:28px 20px;
+      }
+
+      h2{
+        font-size:20px;
+      }
+
+      li{
+        font-size:14.5px;
+      }
+
+      .subtitle{
+        font-size:14px;
+        margin-bottom:22px;
+      }
     }
   </style>
 </head>
@@ -156,6 +180,7 @@
         <h1>Skarga Na Endera</h1>
       </div>
 
+      <!-- TREŚĆ -->
       <div class="content">
         <p class="subtitle">
           Dokument informacyjny dotyczący zgłoszonych zastrzeżeń wobec zachowania administratora.
@@ -165,7 +190,7 @@
           <h2>Opis zgłaszanych nieprawidłowości</h2>
           <ul>
             <li>Nieprzestrzeganie regulaminu serwera, którego jest współautorem.</li>
-            <li>Niestosowne wypowiedzi wobec innych użytkowników, mimo pełnionej funkcji administracyjnej.</li>
+            <li>Niestosowne wypowiedzi wobec innych użytkowników mimo pełnionej funkcji administracyjnej.</li>
             <li>Korzystanie z trybu <strong>Creative</strong> w sytuacjach niezgodnych z zasadami.</li>
             <li>Nadużywanie komend administracyjnych bez wyraźnego uzasadnienia.</li>
             <li>Brak odpowiedniej reakcji na zgłoszenia graczy.</li>
@@ -173,7 +198,7 @@
             <li>Wprowadzanie zmian bez poinformowania społeczności.</li>
             <li>Niewłaściwe zarządzanie konfliktami.</li>
             <li>Brak przejrzystości decyzji administracyjnych.</li>
-            <li>Działania wpływające negatywnie na wizerunek administracji.</li>
+            <li>Działania negatywnie wpływające na wizerunek administracji.</li>
           </ul>
         </section>
 
@@ -186,31 +211,3 @@
   </div>
 </body>
 </html>
-/* === POPRAWKI NA TELEFONY === */
-@media (max-width: 600px) {
-
-  .banner {
-    height: 140px;
-  }
-
-  .banner h1 {
-    font-size: 32px;
-  }
-
-  .content {
-    padding: 28px 20px;
-  }
-
-  h2 {
-    font-size: 20px;
-  }
-
-  li {
-    font-size: 14.5px;
-  }
-
-  .subtitle {
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-}
