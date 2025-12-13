@@ -5,40 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Skarga Na Endera</title>
 <style>
+  /* Animacja zmieniająca kolor fioletu, ale w bardziej stonowanym zakresie */
   @keyframes purpleShift {
-    0%   { background-color: #d6aaff; }
-    50%  { background-color: #5b2a86; }
-    100% { background-color: #d6aaff; }
+    0%   { background-color: #6a42a0; } /* ciemniejszy fiolet */
+    50%  { background-color: #4b2a6a; } /* jeszcze ciemniejszy fiolet */
+    100% { background-color: #6a42a0; }
   }
 
-  body {
+  html, body {
     margin: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    animation: purpleShift 10s ease-in-out infinite;
+    padding: 0;
+    min-height: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #fff;
     text-align: center;
-    padding: 20px;
+    background-color: #6a42a0;
+    animation: purpleShift 15s ease-in-out infinite;
+  }
+
+  body {
+    padding: 40px 20px;
     box-sizing: border-box;
   }
 
   h1 {
     font-size: 3rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
   }
 
   .complaint-box {
-    background: rgba(75, 0, 130, 0.7); /* ciemnofioletowe półprzezroczyste tło */
-    border: 2px solid #d6aaff; /* jasnofioletowa ramka */
+    background: rgba(75, 0, 130, 0.8);
+    border: 2px solid #b99eff;
     border-radius: 12px;
-    padding: 25px 30px;
-    max-width: 650px;
-    box-shadow: 0 0 15px rgba(214, 170, 255, 0.6);
+    padding: 30px 35px;
+    max-width: 700px;
+    margin: 0 auto 50px auto;
+    box-shadow: 0 0 20px rgba(185, 158, 255, 0.7);
     text-align: left;
   }
 
@@ -46,13 +49,13 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    font-size: 1.2rem;
-    line-height: 1.6;
+    font-size: 1.25rem;
+    line-height: 1.7;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
   }
 
   ul li {
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.3rem;
     position: relative;
     padding-left: 1.8em;
   }
@@ -61,7 +64,7 @@
     content: "•";
     position: absolute;
     left: 0;
-    color: #d6aaff;
+    color: #b99eff;
     font-weight: bold;
     font-size: 1.4rem;
     line-height: 1;
@@ -69,14 +72,15 @@
 
   @media (max-width: 600px) {
     h1 {
-      font-size: 2rem;
+      font-size: 2.2rem;
     }
     .complaint-box {
-      max-width: 90%;
-      padding: 20px;
+      max-width: 95%;
+      padding: 20px 25px;
+      margin-bottom: 30px;
     }
     ul {
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
   }
 </style>
@@ -98,6 +102,8 @@
       <li>Manipuluje wynikami serwera na swoją korzyść.</li>
       <li>Nie odpowiada na prośby o wyjaśnienia i tłumaczenia.</li>
       <li>Faworyzuje wybranych graczy, ignorując innych.</li>
+      <li>Wprowadza zmiany bez konsultacji z innymi administratorami.</li>
+      <li>Nie przestrzega własnych deklaracji dotyczących serwera.</li>
     </ul>
   </div>
 </body>
