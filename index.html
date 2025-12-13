@@ -1,110 +1,122 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Skarga Na Endera</title>
-<style>
-  /* Animacja zmieniająca kolor fioletu, ale w bardziej stonowanym zakresie */
-  @keyframes purpleShift {
-    0%   { background-color: #6a42a0; } /* ciemniejszy fiolet */
-    50%  { background-color: #4b2a6a; } /* jeszcze ciemniejszy fiolet */
-    100% { background-color: #6a42a0; }
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skargi Na Endera</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-  html, body {
-    margin: 0;
-    padding: 0;
-    min-height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #fff;
-    text-align: center;
-    background-color: #6a42a0;
-    animation: purpleShift 15s ease-in-out infinite;
-  }
-
-  body {
-    padding: 40px 20px;
-    box-sizing: border-box;
-  }
-
-  h1 {
-    font-size: 3rem;
-    margin-bottom: 2rem;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-  }
-
-  .complaint-box {
-    background: rgba(75, 0, 130, 0.8);
-    border: 2px solid #b99eff;
-    border-radius: 12px;
-    padding: 30px 35px;
-    max-width: 700px;
-    margin: 0 auto 50px auto;
-    box-shadow: 0 0 20px rgba(185, 158, 255, 0.7);
-    text-align: left;
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 1.25rem;
-    line-height: 1.7;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-  }
-
-  ul li {
-    margin-bottom: 1.3rem;
-    position: relative;
-    padding-left: 1.8em;
-  }
-
-  ul li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: #b99eff;
-    font-weight: bold;
-    font-size: 1.4rem;
-    line-height: 1;
-  }
-
-  @media (max-width: 600px) {
-    h1 {
-      font-size: 2.2rem;
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
     }
-    .complaint-box {
-      max-width: 95%;
-      padding: 20px 25px;
+
+    header {
+      text-align: center;
       margin-bottom: 30px;
+      max-width: 700px;
     }
-    ul {
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    }
+
+    header p {
+      font-size: 1.3rem;
+      line-height: 1.4;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+      width: 100%;
+      max-width: 450px;
+      text-align: center;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 15px 10px;
       font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
     }
-  }
-</style>
+
+    button {
+      background: #ff4c4c;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      box-shadow: 0 5px 15px rgba(255, 76, 76, 0.5);
+    }
+
+    button:hover {
+      background: #e04040;
+      box-shadow: 0 8px 20px rgba(224, 64, 64, 0.8);
+    }
+
+    .image-container {
+      margin-bottom: 25px;
+    }
+
+    .image-container img {
+      max-width: 100px;
+      filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.7));
+    }
+
+  </style>
 </head>
 <body>
-  <h1>Skarga Na Endera</h1>
-  <div class="complaint-box">
-    <ul>
-      <li>Nie przestrzega regulaminu, który sam stworzył.</li>
-      <li>Używa ciągle gamemode Creative w Minecraft.</li>
-      <li>Wyzywa innych graczy mimo pełnienia funkcji administratora.</li>
-      <li>Ignoruje skargi zgłaszane przez innych użytkowników.</li>
-      <li>Nie reaguje na zgłoszenia dotyczące nadużyć.</li>
-      <li>Nadużywa swoich uprawnień na serwerze.</li>
-      <li>Utrudnia innym graczom rozgrywkę poprzez nieodpowiednie zachowanie.</li>
-      <li>Brak konsekwencji w egzekwowaniu własnych zasad.</li>
-      <li>Tworzy atmosferę nieprzyjazną dla nowych graczy.</li>
-      <li>Regularnie łamie zasady fair play.</li>
-      <li>Manipuluje wynikami serwera na swoją korzyść.</li>
-      <li>Nie odpowiada na prośby o wyjaśnienia i tłumaczenia.</li>
-      <li>Faworyzuje wybranych graczy, ignorując innych.</li>
-      <li>Wprowadza zmiany bez konsultacji z innymi administratorami.</li>
-      <li>Nie przestrzega własnych deklaracji dotyczących serwera.</li>
-    </ul>
+
+  <header>
+    <div class="image-container">
+      <img src="https://cdn-icons-png.flaticon.com/512/1828/1828778.png" alt="Skarga Icon" />
+    </div>
+    <h1>Skargi Na Endera</h1>
+    <p>Witamy na stronie, gdzie możesz wysłać swoje skargi na administratora Endera. 
+       Twoja opinia jest dla nas ważna, więc nie wahaj się wyrazić swojego zdania!</p>
+  </header>
+
+  <div class="container">
+    <input type="text" id="complaintInput" placeholder="Wpisz treść skargi tutaj..." />
+    <button id="submitBtn">Złóż skargę</button>
   </div>
+
+  <script>
+    const submitBtn = document.getElementById('submitBtn');
+    const complaintInput = document.getElementById('complaintInput');
+
+    submitBtn.addEventListener('click', () => {
+      const complaintText = complaintInput.value.trim();
+      if (!complaintText) {
+        alert('Musisz wpisać Treść skargi!');
+      } else {
+        alert('Dziękujemy za przesłanie skargi!');
+        complaintInput.value = '';
+      }
+    });
+  </script>
+
 </body>
 </html>
