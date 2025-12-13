@@ -2,138 +2,149 @@
 <html lang="pl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Skarga Na Endera</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg1: #3b0f58;
-      --bg2: #672c9a;
-      --bg3: #8c44c9;
-      --accent: #d9a6ff;
-      --card-bg: rgba(255,255,255,0.06);
-      --muted: rgba(255,255,255,0.8);
+      --bg-dark: #1e1029;
+      --bg-mid: #3a1c52;
+      --bg-light: #5b2d82;
+      --accent: #caa8ff;
+      --text-muted: rgba(255,255,255,0.78);
     }
 
     *{box-sizing:border-box}
-    html,body{
-      height:100%;
+
+    body{
       margin:0;
-      font-family: 'Poppins', system-ui;
-      color: white;
-      background: linear-gradient(
-        145deg,
-        var(--bg1) 0%,
-        var(--bg2) 35%,
-        var(--bg3) 100%
-      ); /* ŁAGODNY przejściowy gradient */
+      min-height:100vh;
+      font-family: 'Inter', system-ui;
+      color:white;
+      background:
+        radial-gradient(900px 500px at 15% 20%, rgba(202,168,255,0.18), transparent),
+        radial-gradient(700px 400px at 85% 80%, rgba(130,90,200,0.18), transparent),
+        linear-gradient(160deg, var(--bg-dark), var(--bg-mid), var(--bg-light));
     }
 
-    .container{
+    .wrapper{
       min-height:100vh;
       display:flex;
-      flex-direction:column;
       align-items:center;
       justify-content:center;
-      padding:36px 20px;
+      padding:40px 20px;
     }
 
     .card{
-      width:min(1100px, 96%);
+      width:min(1100px, 100%);
       background: rgba(255,255,255,0.05);
-      border-radius:20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
-      padding:48px;
+      border-radius:22px;
+      padding:50px;
       border:1px solid rgba(255,255,255,0.1);
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     }
 
-    .title{
-      font-size: clamp(36px, 7vw, 78px);
-      font-weight: 800;
+    header{
       text-align:center;
-      margin-bottom:20px;
-      background: linear-gradient(90deg, #ffffff, #e5d4ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      margin-bottom:35px;
     }
 
-    .illustration{
-      width:120px;
-      height:120px;
-      border-radius:20px;
-      background: rgba(255,255,255,0.07);
+    .icon{
+      width:90px;
+      height:90px;
+      border-radius:18px;
+      background: rgba(255,255,255,0.08);
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:48px;
-      margin:0 auto 20px auto;
+      font-size:38px;
+      margin:0 auto 18px;
     }
 
-    .complaint{
+    h1{
+      font-size: clamp(34px, 6vw, 64px);
+      font-weight:800;
+      margin:0;
+      letter-spacing:-1px;
+    }
+
+    .subtitle{
+      margin-top:10px;
+      font-size:16px;
+      color:var(--text-muted);
+    }
+
+    section{
       background: rgba(255,255,255,0.04);
-      border-radius:12px;
-      padding:24px;
+      border-radius:14px;
+      padding:28px;
       border:1px solid rgba(255,255,255,0.08);
     }
 
-    .complaint ul{
+    section h2{
+      margin-top:0;
+      font-size:22px;
+      font-weight:700;
+      margin-bottom:14px;
+      color:var(--accent);
+    }
+
+    ul{
       margin:0;
       padding-left:20px;
     }
 
-    .complaint li{
+    li{
       margin:12px 0;
-      line-height:1.5;
-      font-size:16px;
+      line-height:1.6;
+      font-size:15.5px;
     }
 
     footer{
-      margin-top:20px;
+      margin-top:26px;
       text-align:center;
-      color:rgba(255,255,255,0.7);
       font-size:14px;
+      color:rgba(255,255,255,0.65);
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="wrapper">
     <div class="card">
-      <div class="illustration">📢</div>
 
-      <h1 class="title">Skarga Na Endera</h1>
+      <header>
+        <div class="icon">📄</div>
+        <h1>Skarga Na Endera</h1>
+        <p class="subtitle">
+          Dokument informacyjny dotyczący zgłoszonych zastrzeżeń wobec zachowania administratora.
+        </p>
+      </header>
 
-      <div class="complaint">
+      <section>
+        <h2>Opis zgłaszanych nieprawidłowości</h2>
         <ul>
-          <li>Nie przestrzega regulaminu, który sam stworzył.</li>
-          <li>Wyzywa innych graczy, będąc administratorem.</li>
-          <li>Gra na gamemode <strong>Creative</strong>, mimo że nie powinien.</li>
-          <li>Nadużywa komend administracyjnych w nieuzasadnionych sytuacjach.</li>
-          <li>Ignoruje zgłoszenia innych użytkowników.</li>
-          <li>Wprowadza chaos na serwerze zamiast go porządkować.</li>
-          <li>Faworyzuje wybranych graczy.</li>
-          <li>Zmienia zasady pod siebie, kiedy mu coś nie pasuje.</li>
-          <li>Często wywołuje konflikty zamiast je rozwiązywać.</li>
-          <li>Nie reaguje na prośby o pomoc od nowych graczy.</li>
-          <li>Wykorzystuje uprawnienia, by zdobywać przedmioty w grze.</li>
-          <li>Utrudnia innym grę zamiast ich wspierać.</li>
-          <li>Nie potrafi przyjąć krytyki od użytkowników.</li>
-          <li>Przeprowadza zmiany na serwerze bez informowania innych.</li>
-          <li>Potrafi usuwać lub niszczyć budowle graczy bez powodu.</li>
-          <li>Wprowadza zamieszanie w ekonomii serwera przez cheatowane przedmioty.</li>
-          <li>Manipuluje sytuacją, aby wyglądało, że to inni są winni.</li>
-          <li>Podważa ustalenia, które sam wcześniej zaakceptował.</li>
-          <li>Przekracza swoje kompetencje bez konsultacji z innymi adminami.</li>
+          <li>Nieprzestrzeganie regulaminu serwera, którego jest współautorem.</li>
+          <li>Niestosowne wypowiedzi wobec innych użytkowników, mimo pełnionej funkcji administracyjnej.</li>
+          <li>Korzystanie z trybu <strong>Creative</strong> w sytuacjach niezgodnych z obowiązującymi zasadami.</li>
+          <li>Nadużywanie komend administracyjnych bez wyraźnego uzasadnienia.</li>
+          <li>Brak odpowiedniej reakcji na zgłoszenia składane przez graczy.</li>
+          <li>Faworyzowanie wybranych użytkowników.</li>
+          <li>Wprowadzanie zmian organizacyjnych bez wcześniejszego poinformowania społeczności.</li>
+          <li>Niewłaściwe zarządzanie konfliktami pomiędzy graczami.</li>
+          <li>Brak przejrzystości w podejmowanych decyzjach administracyjnych.</li>
+          <li>Utrudnianie rozgrywki innym użytkownikom poprzez nadużywanie uprawnień.</li>
+          <li>Brak otwartości na konstruktywną krytykę.</li>
+          <li>Działania mogące negatywnie wpływać na wizerunek administracji serwera.</li>
         </ul>
-      </div>
+      </section>
 
       <footer>
-        &copy; 2025 — Strona Skargi
+        &copy; 2025 — Strona informacyjna
       </footer>
+
     </div>
   </div>
 </body>
