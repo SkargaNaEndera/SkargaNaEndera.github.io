@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zgłoś skargę na gracza</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #141e30;
+      background: linear-gradient(135deg, #141e30 0%, #243b55 100%);
+      color: #e1e1e1;
+      margin: 0; padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+    header {
+      max-width: 600px;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      margin-bottom: 0.3rem;
+      color: #ffd700;
+      text-shadow: 0 0 8px #ffd700aa;
+    }
+    header p {
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    button#openFormBtn {
+      background: #ff6b6b;
+      border: none;
+      color: white;
+      padding: 0.8rem 1.6rem;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 3px 8px #ff6b6baa;
+      transition: background-color 0.3s ease;
+      margin-bottom: 1rem;
+    }
+    button#openFormBtn:hover,
+    button#openFormBtn:focus {
+      background: #ff4b4b;
+      outline: none;
+      box-shadow: 0 0 15px #ff4b4bcc;
+    }
+
+    #complaintsList {
+      max-width: 700px;
+      width: 100%;
+      background: #1f2a44cc;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 0 15px #00000088;
+      min-height: 150px;
+      color: #ddd;
+    }
+    #complaintsList h3 {
+      margin-top: 0;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #ffd700;
+      text-shadow: 0 0 5px #ffd700aa;
+    }
+    #complaintsUl {
+      list-style: none;
+      padding-left: 0;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    #complaintsUl li {
+      background: #2a3750dd;
+      margin-bottom: 0.6rem;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      position: relative;
+      font-size: 0.95rem;
+      box-shadow: inset 0 0 8px #000000bb;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    #complaintsUl li .playerNick {
+      font-weight: 700;
+      color: #ffd700;
+      display: block;
+      margin-bottom: 0.3rem;
+      text-shadow: 0 0 5px #ffd700aa;
+    }
+    #complaintsUl li .time {
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+      font-size: 0.8rem;
+      color: #bbb;
+      font-style: italic;
+    }
+    #complaintsUl li button.deleteBtn {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 1rem;
+      background: #ff4b4bcc;
+      border: none;
+      color: white;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    #complaintsUl li button.deleteBtn:hover {
+      background: #ff1f1fcc;
+      box-shadow: 0 0 8px #ff1f1fcc;
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.75);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      padding: 1rem;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      background: #222f57;
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 0 25px #000000dd;
+      color: #e1e1e1;
+      position: relative;
+    }
+    .modal-content h2 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      color: #ffd700;
+      text-align: center;
+      text-shadow: 0 0 7px #ffd700aa;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+      position: relative;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+      color: #ffd700;
+      text-shadow: 0 0 5px #ffd700aa;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.5rem 0.7rem;
+      border-radius: 6px;
+      border: 2px solid #444;
+      background: #1a2240;
+      color: #ddd;
+      font-size: 1rem;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+      font-family: inherit;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #ffd700;
+      outline: none;
+      box-shadow: 0 0 10px #ffd700bb;
+    }
+    .form-group.error input,
+    .form-group.error textarea {
+      border-color: #ff4b4b !important;
+      box-shadow: 0 0 8px #ff4b4bcc !important;
+    }
+    .error-message {
+      color: #ff4b4b;
+      font-size: 0.85rem;
+      margin-top: 0.2rem;
+      min-height: 1.2em;
+    }
+
+    button[type="submit"] {
+      background: #ffd700;
+      color: #222;
+      font-weight: 700;
+      border: none;
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ffd700bb;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+    }
+    button[type="submit"]:hover,
+    button[type="submit"]:focus {
+      background: #e6c200;
+      outline: none;
+      box-shadow: 0 0 15px #e6c200cc;
+    }
+
+    .thankyou-message {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #90ee90;
+      padding: 1rem 0;
+      user-select: none;
+    }
+    .thankyou-message a {
+      color: #ffd700;
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+    .thankyou-message a:hover,
+    .thankyou-message a:focus {
+      color: #ffec75;
+      outline: none;
+    }
+
+    /* Scrollbar */
+    #complaintsUl::-webkit-scrollbar {
+      width: 8px;
+    }
+    #complaintsUl::-webkit-scrollbar-thumb {
+      background: #555;
+      border-radius: 4px;
+    }
+    #complaintsUl::-webkit-scrollbar-track {
+      background: #222;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Zgłoś skargę na gracza</h1>
+  <p>Witamy na stronie, gdzie możesz wysłać swoje skargi na graczy serwera.<br>Twoja opinia jest dla nas ważna, więc nie wahaj się wyrazić swojego zdania!</p>
+</header>
+
+<button id="openFormBtn" aria-haspopup="dialog" aria-controls="complaintModal">Zgłoś skargę</button>
+
+<section id="complaintsList" aria-live="polite" aria-label="Lista złożonych skarg">
+  <h3>Lista złożonych skarg:</h3>
+  <ul id="complaintsUl">
+    <!-- tutaj wyświetlane skargi -->
+  </ul>
+</section>
+
+<div class="modal" id="complaintModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+  <div class="modal-content">
+    <h2 id="modalTitle">Zgłoś skargę na gracza</h2>
+
+    <form id="complaintForm" novalidate>
+      <div class="form-group" id="groupNick">
+        <label for="playerNick">Wpisz nick gracza na którego zgłaszasz skargę</label>
+        <input type="text" id="playerNick" name="playerNick" autocomplete="off" required aria-required="true" />
+        <div class="error-message" aria-live="polite"></div>
+      </div>
+
+      <div class="form-group" id="groupDescription">
+        <label for="playerDesc">Co ten gracz zrobił? (min. 10 słów)</label>
+        <textarea id="playerDesc" name="playerDesc" autocomplete="off" required aria-required="true" rows="5"></textarea>
+        <div class="error-message" aria-live="polite"></div>
+      </div>
+
+      <button type="submit" id="submitComplaint">Wyślij skargę</button>
+    </form>
+
+    <div class="thankyou-message" id="thankyouMessage" style="display:none;">
+      <p>Dziękujemy za złożenie skargi!</p>
+      <a href="#" id="backToMain">Wróć na stronę główną</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const openFormBtn = document.getElementById('openFormBtn');
+  const modal = document.getElementById('complaintModal');
+  const form = document.getElementById('complaintForm');
+  const thankyouMessage = document.getElementById('thankyouMessage');
+  const backToMainLink = document.getElementById('backToMain');
+
+  const complaintsUl = document.getElementById('complaintsUl');
+
+  const groupNick = document.getElementById('groupNick');
+  const groupDesc = document.getElementById('groupDescription');
+
+  const inputNick = document.getElementById('playerNick');
+  const inputDesc = document.getElementById('playerDesc');
+
+  const bannedWords = ['chuj', 'cwel', 'pizda', 'kurwa', 'jebac', 'spierdalaj', 'pierdol', 'skurwysyn'];
+
+  const STORAGE_KEY = 'skargiNaGraczy';
+
+  // Załaduj skargi, usuwając starsze niż tydzień
+  let complaints = loadComplaints();
+
+  function loadComplaints() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+
+    try {
+      const data = JSON.parse(raw);
+      if (!Array.isArray(data)) return [];
+
+      const oneWeekAgo = Date.now() - 7 * 24 * 60 * 60 * 1000;
+
+      const filtered = data.filter(c => {
+        return c.timestamp && c.timestamp >= oneWeekAgo;
+      });
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
+      return filtered;
+    } catch {
+      return [];
+    }
+  }
+
+  function saveComplaints() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(complaints));
+  }
+
+  function formatDate(date) {
+    const d = date.getDate().toString().padStart(2,'0');
+    const m = (date.getMonth()+1).toString().padStart(2,'0');
+    const y = date.getFullYear();
+    const hh = date.getHours().toString().padStart(2,'0');
+    const mm = date.getMinutes().toString().padStart(2,'0');
+    return `${d}.${m}.${y}, ${hh}:${mm}`;
+  }
+
+  function containsBannedWords(text) {
+    const textLower = text.toLowerCase();
+    return bannedWords.some(word => textLower.includes(word));
+  }
+
+  function validateForm() {
+    let valid = true;
+
+    groupNick.classList.remove('error');
+    groupDesc.classList.remove('error');
+    groupNick.querySelector('.error-message').textContent = '';
+    groupDesc.querySelector('.error-message').textContent = '';
+
+    if (!inputNick.value.trim()) {
+      groupNick.classList.add('error');
+      groupNick.querySelector('.error-message').textContent = 'Musisz wpisać nick gracza!';
+      valid = false;
+    }
+
+    if (containsBannedWords(inputDesc.value)) {
+      groupDesc.classList.add('error');
+      groupDesc.querySelector('.error-message').textContent = 'Opis zawiera niedozwolone słowa. Proszę zmienić treść.';
+      valid = false;
+    } else {
+      const words = inputDesc.value.trim().split(/\s+/).filter(w => w.length > 0);
+      if (words.length < 10) {
+        groupDesc.classList.add('error');
+        groupDesc.querySelector('.error-message').textContent = 'Opis musi zawierać co najmniej 10 słów.';
+        valid = false;
+      }
+    }
+
+    return valid;
+  }
+
+  function isDuplicate(nick, desc) {
+    const lowerNick = nick.trim().toLowerCase();
+    const lowerDesc = desc.trim().toLowerCase();
+    return complaints.some(c => c.nick.toLowerCase() === lowerNick && c.desc.toLowerCase() === lowerDesc);
+  }
+
+  function addComplaint(nick, desc) {
+    const now = new Date();
+    const timeStr = formatDate(now);
+
+    const complaintObj = {
+      nick: nick.trim(),
+      desc: desc.trim(),
+      time: timeStr,
+      id: Date.now() + Math.random(),
+      timestamp: now.getTime()
+    };
+
+    complaints.push(complaintObj);
+    saveComplaints();
+    renderComplaints();
+  }
+
+  function renderComplaints() {
+    complaintsUl.innerHTML = '';
+
+    if(complaints.length === 0){
+      complaintsUl.innerHTML = '<li>Brak złożonych skarg.</li>';
+      return;
+    }
+
+    complaints.forEach(c => {
+      const li = document.createElement('li');
+
+      const nickSpan = document.createElement('span');
+      nickSpan.textContent = `Gracz: ${c.nick}`;
+      nickSpan.classList.add('playerNick');
+      li.appendChild(nickSpan);
+
+      const descText = document.createTextNode(c.desc);
+      li.appendChild(descText);
+
+      const timeSpan = document.createElement('span');
+      timeSpan.textContent = c.time;
+      timeSpan.classList.add('time');
+      li.appendChild(timeSpan);
+
+      const delBtn = document.createElement('button');
+      delBtn.textContent = 'Usuń';
+      delBtn.classList.add('deleteBtn');
+      delBtn.setAttribute('aria-label', `Usuń skargę na ${c.nick}`);
+
+      delBtn.addEventListener('click', () => {
+        const index = complaints.findIndex(item => item.id === c.id);
+        if (index > -1) {
+          complaints.splice(index, 1);
+          saveComplaints();
+          renderComplaints();
+        }
+      });
+
+      li.appendChild(delBtn);
+      complaintsUl.appendChild(li);
+    });
+  }
+
+  openFormBtn.addEventListener('click', () => {
+    modal.classList.add('active');
+    form.style.display = 'block';
+    thankyouMessage.style.display = 'none';
+
+    inputNick.value = '';
+    inputDesc.value = '';
+
+    groupNick.classList.remove('error');
+    groupDesc.classList.remove('error');
+    groupNick.querySelector('.error-message').textContent = '';
+    groupDesc.querySelector('.error-message').textContent = '';
+
+    inputNick.focus();
+  });
+
+  backToMainLink.addEventListener('click', e => {
+    e.preventDefault();
+    modal.classList.remove('active');
+    openFormBtn.focus();
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    const nick = inputNick.value.trim();
+    const desc = inputDesc.value.trim();
+
+    if (isDuplicate(nick, desc)) {
+      groupDesc.classList.add('error');
+      groupDesc.querySelector('.error-message').textContent = 'Taka skarga już została zgłoszona!';
+      return;
+    }
+
+    addComplaint(nick, desc);
+
+    form.style.display = 'none';
+    thankyouMessage.style.display = 'block';
+  });
+
+  modal.addEventListener('click', e => {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+      openFormBtn.focus();
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      modal.classList.remove('active');
+      openFormBtn.focus();
+    }
+  });
+
+  inputDesc.addEventListener('input', () => {
+    groupDesc.classList.remove('error');
+    groupDesc.querySelector('.error-message').textContent = '';
+  });
+
+  inputNick.addEventListener('input', () => {
+    groupNick.classList.remove('error');
+    groupNick.querySelector('.error-message').textContent = '';
+  });
+
+  // Wyświetl skargi po załadowaniu strony
+  renderComplaints();
+
+})();
+</script>
+
+</body>
+</html>
