@@ -41,47 +41,78 @@
       width:min(1100px, 100%);
       background: rgba(255,255,255,0.05);
       border-radius:22px;
-      padding:50px;
+      overflow:hidden;
       border:1px solid rgba(255,255,255,0.1);
       backdrop-filter: blur(10px);
       box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     }
 
-    header{
-      text-align:center;
-      margin-bottom:35px;
-    }
-
-    .icon{
-      width:90px;
-      height:90px;
-      border-radius:18px;
-      background: rgba(255,255,255,0.08);
+    /* ===== BANNER ===== */
+    .banner{
+      height:220px;
+      background:
+        linear-gradient(120deg, rgba(202,168,255,0.35), rgba(90,40,140,0.6)),
+        url("data:image/svg+xml;utf8,
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 400'>
+          <defs>
+            <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+              <stop offset='0%' stop-color='%238b5cf6'/>
+              <stop offset='100%' stop-color='%233b0764'/>
+            </linearGradient>
+          </defs>
+          <rect width='1200' height='400' fill='url(%23g)'/>
+          <circle cx='300' cy='200' r='180' fill='rgba(255,255,255,0.08)'/>
+          <circle cx='800' cy='100' r='120' fill='rgba(255,255,255,0.06)'/>
+          <circle cx='950' cy='300' r='160' fill='rgba(255,255,255,0.05)'/>
+        </svg>");
+      background-size: cover;
+      background-position: center;
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:38px;
-      margin:0 auto 18px;
+      text-align:center;
+      padding:20px;
     }
 
-    h1{
-      font-size: clamp(34px, 6vw, 64px);
+    .banner h1{
+      font-size: clamp(36px, 6vw, 64px);
       font-weight:800;
       margin:0;
       letter-spacing:-1px;
+      text-shadow: 0 6px 30px rgba(0,0,0,0.6);
+    }
+
+    .content{
+      padding:50px;
     }
 
     .subtitle{
-      margin-top:10px;
+      text-align:center;
+      margin-top:-20px;
+      margin-bottom:30px;
       font-size:16px;
       color:var(--text-muted);
     }
 
     section{
+      position:relative;
       background: rgba(255,255,255,0.04);
       border-radius:14px;
       padding:28px;
       border:1px solid rgba(255,255,255,0.08);
+      overflow:hidden;
+    }
+
+    /* dekoracyjna grafika w sekcji */
+    section::after{
+      content:"";
+      position:absolute;
+      right:-60px;
+      top:-60px;
+      width:200px;
+      height:200px;
+      background: radial-gradient(circle, rgba(202,168,255,0.25), transparent 70%);
+      pointer-events:none;
     }
 
     section h2{
@@ -109,41 +140,47 @@
       font-size:14px;
       color:rgba(255,255,255,0.65);
     }
+
+    @media (max-width:700px){
+      .content{padding:30px}
+      .banner{height:180px}
+    }
   </style>
 </head>
 <body>
   <div class="wrapper">
     <div class="card">
 
-      <header>
-        <div class="icon">📄</div>
+      <!-- BANNER -->
+      <div class="banner">
         <h1>Skarga Na Endera</h1>
+      </div>
+
+      <div class="content">
         <p class="subtitle">
           Dokument informacyjny dotyczący zgłoszonych zastrzeżeń wobec zachowania administratora.
         </p>
-      </header>
 
-      <section>
-        <h2>Opis zgłaszanych nieprawidłowości</h2>
-        <ul>
-          <li>Nieprzestrzeganie regulaminu serwera, którego jest współautorem.</li>
-          <li>Niestosowne wypowiedzi wobec innych użytkowników, mimo pełnionej funkcji administracyjnej.</li>
-          <li>Korzystanie z trybu <strong>Creative</strong> w sytuacjach niezgodnych z obowiązującymi zasadami.</li>
-          <li>Nadużywanie komend administracyjnych bez wyraźnego uzasadnienia.</li>
-          <li>Brak odpowiedniej reakcji na zgłoszenia składane przez graczy.</li>
-          <li>Faworyzowanie wybranych użytkowników.</li>
-          <li>Wprowadzanie zmian organizacyjnych bez wcześniejszego poinformowania społeczności.</li>
-          <li>Niewłaściwe zarządzanie konfliktami pomiędzy graczami.</li>
-          <li>Brak przejrzystości w podejmowanych decyzjach administracyjnych.</li>
-          <li>Utrudnianie rozgrywki innym użytkownikom poprzez nadużywanie uprawnień.</li>
-          <li>Brak otwartości na konstruktywną krytykę.</li>
-          <li>Działania mogące negatywnie wpływać na wizerunek administracji serwera.</li>
-        </ul>
-      </section>
+        <section>
+          <h2>Opis zgłaszanych nieprawidłowości</h2>
+          <ul>
+            <li>Nieprzestrzeganie regulaminu serwera, którego jest współautorem.</li>
+            <li>Niestosowne wypowiedzi wobec innych użytkowników, mimo pełnionej funkcji administracyjnej.</li>
+            <li>Korzystanie z trybu <strong>Creative</strong> w sytuacjach niezgodnych z zasadami.</li>
+            <li>Nadużywanie komend administracyjnych bez wyraźnego uzasadnienia.</li>
+            <li>Brak odpowiedniej reakcji na zgłoszenia graczy.</li>
+            <li>Faworyzowanie wybranych użytkowników.</li>
+            <li>Wprowadzanie zmian bez poinformowania społeczności.</li>
+            <li>Niewłaściwe zarządzanie konfliktami.</li>
+            <li>Brak przejrzystości decyzji administracyjnych.</li>
+            <li>Działania wpływające negatywnie na wizerunek administracji.</li>
+          </ul>
+        </section>
 
-      <footer>
-        &copy; 2025 — Strona informacyjna
-      </footer>
+        <footer>
+          &copy; 2025 — Strona informacyjna
+        </footer>
+      </div>
 
     </div>
   </div>
