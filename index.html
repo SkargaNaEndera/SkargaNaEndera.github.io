@@ -28,24 +28,33 @@
 
   h1 {
     font-size: 3rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+  }
+
+  .complaint-box {
+    background: rgba(75, 0, 130, 0.7); /* ciemnofioletowe półprzezroczyste tło */
+    border: 2px solid #d6aaff; /* jasnofioletowa ramka */
+    border-radius: 12px;
+    padding: 25px 30px;
+    max-width: 650px;
+    box-shadow: 0 0 15px rgba(214, 170, 255, 0.6);
+    text-align: left;
   }
 
   ul {
     list-style: none;
     padding: 0;
-    max-width: 600px;
+    margin: 0;
     font-size: 1.2rem;
-    line-height: 1.5;
+    line-height: 1.6;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-    text-align: left;
   }
 
   ul li {
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     position: relative;
-    padding-left: 1.5em;
+    padding-left: 1.8em;
   }
 
   ul li::before {
@@ -54,31 +63,42 @@
     left: 0;
     color: #d6aaff;
     font-weight: bold;
+    font-size: 1.4rem;
+    line-height: 1;
   }
 
   @media (max-width: 600px) {
     h1 {
       font-size: 2rem;
     }
+    .complaint-box {
+      max-width: 90%;
+      padding: 20px;
+    }
     ul {
       font-size: 1rem;
-      max-width: 90%;
     }
   }
 </style>
 </head>
 <body>
   <h1>Skarga Na Endera</h1>
-  <ul>
-    <li>Nie przestrzega regulaminu, który sam stworzył.</li>
-    <li>Używa ciągle gamemode Creative w Minecraft.</li>
-    <li>Wyzywa innych graczy mimo pełnienia funkcji administratora.</li>
-    <li>Ignoruje skargi zgłaszane przez innych użytkowników.</li>
-    <li>Nie reaguje na zgłoszenia dotyczące nadużyć.</li>
-    <li>Nadużywa swoich uprawnień na serwerze.</li>
-    <li>Utrudnia innym graczom rozgrywkę poprzez nieodpowiednie zachowanie.</li>
-    <li>Brak konsekwencji w egzekwowaniu własnych zasad.</li>
-    <li>Tworzy atmosferę nieprzyjazną dla nowych graczy.</li>
-  </ul>
+  <div class="complaint-box">
+    <ul>
+      <li>Nie przestrzega regulaminu, który sam stworzył.</li>
+      <li>Używa ciągle gamemode Creative w Minecraft.</li>
+      <li>Wyzywa innych graczy mimo pełnienia funkcji administratora.</li>
+      <li>Ignoruje skargi zgłaszane przez innych użytkowników.</li>
+      <li>Nie reaguje na zgłoszenia dotyczące nadużyć.</li>
+      <li>Nadużywa swoich uprawnień na serwerze.</li>
+      <li>Utrudnia innym graczom rozgrywkę poprzez nieodpowiednie zachowanie.</li>
+      <li>Brak konsekwencji w egzekwowaniu własnych zasad.</li>
+      <li>Tworzy atmosferę nieprzyjazną dla nowych graczy.</li>
+      <li>Regularnie łamie zasady fair play.</li>
+      <li>Manipuluje wynikami serwera na swoją korzyść.</li>
+      <li>Nie odpowiada na prośby o wyjaśnienia i tłumaczenia.</li>
+      <li>Faworyzuje wybranych graczy, ignorując innych.</li>
+    </ul>
+  </div>
 </body>
 </html>
