@@ -1,1 +1,1 @@
-# SkargaNaEndera.github.io
+# SkargaNaGracz.github.io
